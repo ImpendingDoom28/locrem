@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 // Components
 import { 
 	View, 
 	Text 
-} from 'react-native';
+} from "react-native";
 
-const FormPage = () => {
+export const FormPage = () => {
 	return (
 		<View>
 			<Text>
@@ -14,6 +14,4 @@ const FormPage = () => {
 			</Text>
 		</View>
 	);
-}
-
-export default FormPage;
+};

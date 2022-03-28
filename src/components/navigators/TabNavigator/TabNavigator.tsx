@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 
 // Components
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import LocationsScreen from '../../screens/LocationsScreen/LocationsScreen';
-import AddLocationScreen from '../../screens/AddLocationScreen/AddLocationScreen';
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import { AddLocationScreen, LocationsScreen } from "../../screens";
 
-const { Navigator, Screen} = createBottomTabNavigator();
+const { Navigator, Screen } = createBottomTabNavigator();
 
 const TabNavigator = () => {
 	const defaultScreenOptions = {headerShown: false};
@@ -26,6 +25,6 @@ const TabNavigator = () => {
 			/>
 		</Navigator>
 	);
-}
+};
 
 export default TabNavigator;

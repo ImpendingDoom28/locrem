@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { View } from 'react-native';
+import { View } from "react-native";
 
-const LocationsScreen = () => {
+export const LocationsScreen = () => {
 	return (
 		<View>{"Locations screen"}</View>
 	);
-}
-
-export default LocationsScreen;
+};

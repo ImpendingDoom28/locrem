@@ -1,12 +1,10 @@
-import React from 'react';
+import React from "react";
 
 // Components
-import { View } from 'react-native';
+import { View } from "react-native";
 
-const AddLocationScreen = () => {
+export const AddLocationScreen = () => {
 	return (
 		<View>{"Add location screen"}</View>
 	);
-}
-
-export default AddLocationScreen;
+};

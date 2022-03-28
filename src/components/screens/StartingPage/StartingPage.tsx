@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 //Components
 import { 
@@ -11,18 +11,16 @@ type StartingPageProps = {
 	navigation: any
 }
 
-const StartingPage: React.FC<StartingPageProps> = ({navigation}) => {
+export const StartingPage: React.FC<StartingPageProps> = ({navigation}) => {
 	return (
 		<View>
 			<Text>{"This is starting page"}</Text>
 			<Button 
 				title={"Go to home2"}
-				onPress={() => { navigation.navigate("home2")}}
+				onPress={() => { navigation.navigate("home2");}}
 			>
 				Start
 			</Button>
 		</View>
 	);
-}
-
-export default StartingPage;
+};
