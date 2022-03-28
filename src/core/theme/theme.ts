@@ -12,11 +12,12 @@ const themeVariables = {
 		"Dark Orchid": "#9A48D0",
 		"White": "#FFFFFF"
 	},
-}
+};
 
 export const theme = {
 	colors: {
+		lightAccent: themeVariables.colors["Royal Purple"],
 		accent: themeVariables.colors["Cyber Grape"],
 		backgroundColor: themeVariables.colors["White"]
 	}
-}
+};

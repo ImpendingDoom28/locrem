@@ -1,9 +1,13 @@
 import React from "react";
 
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 export const LocationsScreen = () => {
 	return (
-		<View>{"Locations screen"}</View>
+		<View>
+			<Text>
+				{"Locations screen"}
+			</Text>
+		</View>
 	);
 };

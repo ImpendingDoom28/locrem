@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 // Components
-import { Button, SafeAreaView } from 'react-native';
+import { Button, SafeAreaView } from "react-native";
 
 // Types
-import { NavBarPageState } from '../../core/types/NavBarPageStates.type';
+import { NavBarPageState } from "../../core/types/NavBarPageStates.type";
 
 type NavBarProps = {
 	changeView: (state: NavBarPageState) => void;
@@ -12,13 +12,13 @@ type NavBarProps = {
 
 const NavBar: React.FC<NavBarProps> = (
 	{
-
+		changeView
 	}) => {
 	return (
 		<SafeAreaView>
-			<Button title={"xd"} onPress={() => {console.log('gay website')}}/>
+			<Button title={"xd"} onPress={() => {console.log("gay website");}}/>
 		</SafeAreaView>
 	);
-}
+};
 
 export default NavBar;

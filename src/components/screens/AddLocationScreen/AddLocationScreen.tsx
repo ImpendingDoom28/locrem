@@ -1,10 +1,14 @@
 import React from "react";
 
 // Components
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 export const AddLocationScreen = () => {
 	return (
-		<View>{"Add location screen"}</View>
+		<View>
+			<Text>
+				{"Add location screen"}
+			</Text>
+		</View>
 	);
 };

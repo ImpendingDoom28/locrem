@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // Components
 import { 
@@ -6,12 +6,12 @@ import {
 	SafeAreaView, 
 	StatusBar, 
 	StyleSheet 
-} from 'react-native';
+} from "react-native";
 
 // Theme
-import { theme } from '../../../core/theme/theme';
+import { theme } from "../../../core/theme/theme";
 
-type PageViewProps = {}
+type PageViewProps = Record<string, unknown>
 
 const PageView: React.FC<PageViewProps> = (
 	{
@@ -24,7 +24,7 @@ const PageView: React.FC<PageViewProps> = (
 			{children}
 		</SafeAreaView>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	pageView: {
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
 		backgroundColor: theme.colors.backgroundColor,
 		paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
 	}
-})
+});
 
 export default PageView;
