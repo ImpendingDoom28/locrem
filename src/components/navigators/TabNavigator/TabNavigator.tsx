@@ -7,6 +7,7 @@ import { AddLocationScreen, LocationsScreen } from "../../screens";
 // Assets
 import { TabBarIcon } from "../../uiKit";
 import { theme } from "../../../core";
+import { routes } from "./routes";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -19,10 +20,10 @@ export const TabNavigator = () => {
 
 	return (
 		<Navigator 
-			initialRouteName={"locations"}
+			initialRouteName={routes.addLocation}
 		>
 			<Screen 
-				name={"locations"} 
+				name={routes.locations} 
 				component={LocationsScreen} 
 				options={{
 					...defaultScreenOptions,
@@ -33,7 +34,7 @@ export const TabNavigator = () => {
 				}}
 			/>
 			<Screen 
-				name={"add location"} 
+				name={routes.addLocation} 
 				component={AddLocationScreen} 
 				options={{
 					...defaultScreenOptions,

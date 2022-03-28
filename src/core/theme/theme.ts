@@ -10,7 +10,8 @@ const themeVariables = {
 		"Cyber Grape":"#63458A",
 		/**#9A48D0*/
 		"Dark Orchid": "#9A48D0",
-		"White": "#FFFFFF"
+		"White": "#FFFFFF",
+		"Overlay": "#00000033"
 	},
 };
 
@@ -18,6 +19,7 @@ export const theme = {
 	colors: {
 		lightAccent: themeVariables.colors["Royal Purple"],
 		accent: themeVariables.colors["Cyber Grape"],
-		backgroundColor: themeVariables.colors["White"]
+		backgroundColor: themeVariables.colors["White"],
+		overlayColor: themeVariables.colors["Overlay"]
 	}
 };

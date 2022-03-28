@@ -1,13 +1,13 @@
 import React from "react";
 
-import { View, Text } from "react-native";
+import { Text, SafeAreaView } from "react-native";
 
 export const LocationsScreen = () => {
 	return (
-		<View>
+		<SafeAreaView>
 			<Text>
 				{"Locations screen"}
 			</Text>
-		</View>
+		</SafeAreaView>
 	);
 };
