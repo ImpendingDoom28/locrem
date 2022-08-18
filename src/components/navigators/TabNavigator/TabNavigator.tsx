@@ -5,7 +5,7 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-nav
 import { AddLocationScreen, LocationsScreen } from "../../screens";
 
 // Assets
-import { TabBarIcon } from "../../uiKit";
+import { ButtonIcon } from "../../uiKit";
 import { theme } from "../../../core";
 import { routes } from "./routes";
 
@@ -16,6 +16,10 @@ export const TabNavigator = () => {
 		headerShown: false,
 		tabBarActiveTintColor: theme.colors.lightAccent,
 		tabBarInactiveTintColor: "gray",
+		tabBarStyle: {
+			borderTopWidth: 0, 
+			backgroundColor: theme.colors.backgroundColor,
+		},
 	};
 
 	return (
@@ -27,7 +31,7 @@ export const TabNavigator = () => {
 				component={LocationsScreen} 
 				options={{
 					...defaultScreenOptions,
-					tabBarIcon: (options) => <TabBarIcon 
+					tabBarIcon: (options) => <ButtonIcon 
 						{...options} 
 						iconName={"location-outline"} 
 					/>
@@ -38,7 +42,7 @@ export const TabNavigator = () => {
 				component={AddLocationScreen} 
 				options={{
 					...defaultScreenOptions,
-					tabBarIcon: (options) => <TabBarIcon 
+					tabBarIcon: (options) => <ButtonIcon 
 						{...options} 
 						iconName={"add-outline"} 
 					/>

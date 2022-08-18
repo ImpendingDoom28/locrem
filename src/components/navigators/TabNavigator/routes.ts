@@ -1,4 +1,4 @@
 export const routes = {
-	locations: "locations",
-	addLocation: "addLocation",
+	locations: "Locations",
+	addLocation: "Add Location",
 };
