@@ -11,17 +11,21 @@ const themeVariables = {
 		/**#9A48D0*/
 		"Dark Orchid": "#9A48D0",
 		"White": "#FFFFFF",
+		"Light Gray": "#5f5f5f",
 		"Black": "#2a2a2a",
+		"Dark Black": "#212121",
 		"Overlay": "#00000033"
 	},
 };
 
 export const theme = {
 	colors: {
+		lightGray: themeVariables.colors["Light Gray"],
 		lightAccent: themeVariables.colors["Royal Purple"],
 		accent: themeVariables.colors["Cyber Grape"],
 		white: themeVariables.colors["White"],
 		backgroundColor: themeVariables.colors["Black"],
+		darkBackgroundColor: themeVariables.colors["Dark Black"],
 		overlayColor: themeVariables.colors["Overlay"]
 	}
 };

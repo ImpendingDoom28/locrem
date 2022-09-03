@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Modal, Text, TextInput, Dimensions, Button, Platform, KeyboardAvoidingView } from "react-native";
+import { View, StyleSheet, Modal, Text, TextInput, Button, Platform, KeyboardAvoidingView } from "react-native";
 import { LatLng, MarkerProps } from "react-native-maps";
+
 import { theme } from "../../../core";
 import { ButtonIcon } from "../../uiKit";
 
@@ -19,31 +20,30 @@ export const MarkerFormModal: React.FC<MarkerFormModalProps> = (
 		setMarkers,
 	}) => {
 
-	const [shouldClearAgain, setShouldClearAgain] = useState<boolean>(true);
-	const [markerTitle, setMarkerTitle] = useState<string>("New place");
+	const [markerTitle, setMarkerTitle] = useState<string>("");
+	const [markerNotes, setMarkerNotes] = useState<string>("");
 
+	const resetModal = () => {
+		setMarkerTitle("");
+		setMarkerNotes("");
+	};
 	const closeModal = () => {
 		setModalVisible(false);
-	};
-	const resetModal = () => {
-		setMarkerTitle("New place");
+		resetModal();
 	};
 
-	const onLocationNameChange = () => {
-		setShouldClearAgain(false);
-	};
 	const onSaveButtonPress = () => {
-		if(markerCoordinate) {
+		if(markerCoordinate && markerTitle.length && markerNotes.length) {
 			setMarkers((prevMarkers) => [
 				...prevMarkers, 
 				{
 					coordinate: markerCoordinate,
+					description: markerNotes,
 					title: markerTitle,
 					draggable: true,
 				}
 			]);
 			closeModal();
-			resetModal();
 		}
 	};
 
@@ -80,13 +80,26 @@ export const MarkerFormModal: React.FC<MarkerFormModalProps> = (
 						<View style={styles.inputView}>
 							<Text style={styles.label}>{"Enter location name:"}</Text>
 							<TextInput
-								clearTextOnFocus={shouldClearAgain}
+								placeholder={"New location"}
 								enablesReturnKeyAutomatically
 								clearButtonMode={"while-editing"}
 								onChangeText={setMarkerTitle}
-								onChange={onLocationNameChange}
 								style={styles.textInput}
 								value={markerTitle}
+							/>
+						</View>
+						<View style={styles.inputView}>
+							<Text style={styles.label}>{"Enter notes:"}</Text>
+							<TextInput
+								placeholder={"Don't forget to water up your plants!"}
+								placeholderTextColor={theme.colors.lightGray}
+								enablesReturnKeyAutomatically
+								clearButtonMode={"while-editing"}
+								onChangeText={setMarkerNotes}
+								style={styles.textInput}
+								value={markerNotes}
+								numberOfLines={4}
+								multiline
 							/>
 						</View>
 						<View style={styles.buttonView}>

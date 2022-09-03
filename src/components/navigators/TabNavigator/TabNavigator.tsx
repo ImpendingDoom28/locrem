@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Components
+import { MarkerProps } from "react-native-maps";
 import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AddLocationScreen, LocationsScreen } from "../../screens";
 
 // Assets
 import { ButtonIcon } from "../../uiKit";
-import { theme } from "../../../core";
+import { getDataLocally, saveDataLocally, theme } from "../../../core";
 import { routes } from "./routes";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
+const defaultScreenOptions: BottomTabNavigationOptions = {
+	headerShown: false,
+	tabBarActiveTintColor: theme.colors.lightAccent,
+	tabBarInactiveTintColor: "gray",
+	tabBarStyle: {
+		borderTopWidth: 0, 
+		backgroundColor: theme.colors.backgroundColor,
+	},
+};
+
 export const TabNavigator = () => {
-	const defaultScreenOptions: BottomTabNavigationOptions = {
-		headerShown: false,
-		tabBarActiveTintColor: theme.colors.lightAccent,
-		tabBarInactiveTintColor: "gray",
-		tabBarStyle: {
-			borderTopWidth: 0, 
-			backgroundColor: theme.colors.backgroundColor,
-		},
-	};
+	const [markers, setMarkers] = useState<MarkerProps[]>([]);
+
+	useEffect(() => {
+		getDataLocally("savedMarkers").then((data) => {
+			if(data) {
+				const markers = data as MarkerProps[];
+				if(markers.length) {
+					setMarkers(markers);
+				}
+			}
+		});
+	}, []);
+
+	useEffect(() => {
+		if(markers.length) {
+			saveDataLocally("savedMarkers", markers);
+		}
+	}, [markers]);
 
 	return (
 		<Navigator 
@@ -28,18 +48,25 @@ export const TabNavigator = () => {
 		>
 			<Screen 
 				name={routes.locations} 
-				component={LocationsScreen} 
 				options={{
 					...defaultScreenOptions,
 					tabBarIcon: (options) => <ButtonIcon 
 						{...options} 
 						iconName={"location-outline"} 
-					/>
+					/>,
 				}}
-			/>
+			>
+				{() => {
+					return (
+						<LocationsScreen
+							markers={markers}
+							setMarkers={setMarkers} 
+						/>
+					);
+				}}
+			</Screen>
 			<Screen 
 				name={routes.addLocation} 
-				component={AddLocationScreen} 
 				options={{
 					...defaultScreenOptions,
 					tabBarIcon: (options) => <ButtonIcon 
@@ -47,7 +74,16 @@ export const TabNavigator = () => {
 						iconName={"add-outline"} 
 					/>
 				}}
-			/>
+			>
+				{() => {
+					return (
+						<AddLocationScreen
+							markers={markers}
+							setMarkers={setMarkers} 
+						/>
+					);
+				}}
+			</Screen>
 		</Navigator>
 	);
 };

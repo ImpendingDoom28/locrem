@@ -16,7 +16,7 @@ const App = () => {
 				animated
 				networkActivityIndicatorVisible
 			/>
-			<TabNavigator/>
+			<TabNavigator />
 		</NavigationContainer>
 	);
 };

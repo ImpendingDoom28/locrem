@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // Components
-import { ActivityIndicator, Dimensions, StyleSheet, View, Text, Vibration } from "react-native";
+import { ActivityIndicator, Dimensions, StyleSheet, View, Text } from "react-native";
 import MapView, { LatLng, MapEvent, Marker, MarkerProps, Overlay } from "react-native-maps";
 import { MarkerFormModal } from "../modals";
 
 // Utils
-import { theme, useGeolocation } from "../../core";
-import { getDataLocally, saveDataLocally } from "../../core/services/LocalStorage.service";
+import { 
+	theme, 
+	useGeolocation,
+} from "../../core";
 
-export const MapComponent = () => {
+type MapComponentProps = {
+	markers: MarkerProps[];
+	setMarkers: React.Dispatch<React.SetStateAction<MarkerProps[]>>
+}
+
+export const MapComponent: React.FC<MapComponentProps> = ({ markers, setMarkers }) => {
 
 	const {
 		location: userLocation,
@@ -17,25 +24,7 @@ export const MapComponent = () => {
 	} = useGeolocation();
 
 	const [markerCoordinate, setMarkerCoordinate] = useState<LatLng | undefined>(undefined);
-	const [markers, setMarkers] = useState<MarkerProps[]>([]);
-	const [modalVisible, setModalVisible] = useState(false);
-
-	useEffect(() => {
-		getDataLocally("savedMarkers").then((data) => {
-			if(data) {
-				const markers = data as MarkerProps[];
-				if(markers.length) {
-					setMarkers(markers);
-				}
-			}
-		});
-	}, []);
-
-	useEffect(() => {
-		if(markers) {
-			saveDataLocally("savedMarkers", markers);
-		}
-	}, [markers]);
+	const [modalVisible, setModalVisible] = useState<boolean>(false);
 
 	const initialRegion = userLocation ? {
 		latitude: userLocation.coords.latitude,
@@ -46,13 +35,8 @@ export const MapComponent = () => {
 
 	const onLongPress = (event: MapEvent) => {
 		event.persist();
-		Vibration.vibrate();
 		setMarkerCoordinate(event.nativeEvent.coordinate);
 		setModalVisible(true);
-	};
-
-	const onMarkerPress = (event: MapEvent) => {
-		event.preventDefault();
 	};
 
 	return (
@@ -64,24 +48,24 @@ export const MapComponent = () => {
 				onLongPress={onLongPress}
 				style={styles.map} 
 			>
-				{markers.map((marker, index) => {
-					return <Marker
-						key={index}
-						coordinate={marker.coordinate}
-						pinColor={theme.colors.lightAccent}
-						tracksViewChanges
-						tappable
-						onPress={onMarkerPress}
-						title={marker.title}
-						description={marker.description}
-					/>;
+				{markers.map((marker) => {
+					return (
+						<Marker
+							key={`${marker.coordinate.latitude}-${marker.coordinate.longitude}`}
+							coordinate={marker.coordinate}
+							title={marker.title}
+							description={marker.description}
+							pinColor={theme.colors.lightAccent}
+							tappable
+							tracksViewChanges
+						/>
+					);
 				})}
 			</MapView>
 			{!loading && (
 				<Overlay 
 					image={1}
 					bounds={[[0,0],[0,0]]}
-					opacity={0.8}
 					style={styles.overlay}
 				>
 					<View style={styles.overlayView}>
@@ -134,7 +118,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		position: "absolute",
-		bottom: 20,
+		bottom: 16,
 		left: 0,
 		right: 0,
 	},
@@ -143,7 +127,7 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 10,
 		borderBottomLeftRadius: 10,
 		borderBottomRightRadius: 10,
-		backgroundColor: theme.colors.backgroundColor,
+		backgroundColor: theme.colors.darkBackgroundColor,
 	},
 	overlayText: {
 		fontSize: 16,
