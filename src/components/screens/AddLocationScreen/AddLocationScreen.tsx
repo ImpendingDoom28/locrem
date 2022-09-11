@@ -9,7 +9,6 @@ type AddLocationScreenProps = {
 	setMarkers: React.Dispatch<React.SetStateAction<MarkerProps[]>>
 }
 
-
 export const AddLocationScreen: React.FC<AddLocationScreenProps> = (props) => {
 	return (
 		<MapComponent {...props} />

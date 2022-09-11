@@ -13,9 +13,10 @@
     "ios": {
       "supportsTablet": true
     },
-    "name": "locrem",
+    "name": "Locrem",
     "orientation": "portrait",
-    "slug": "locrem",
+    "owner": "impendingdoom28",
+    "slug": "locationremember",
     "splash": {
       "backgroundColor": "#ffffff",
       "image": "./assets/splash.png",

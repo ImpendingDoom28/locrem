@@ -57,7 +57,6 @@ export const MapComponent: React.FC<MapComponentProps> = ({ markers, setMarkers 
 							description={marker.description}
 							pinColor={theme.colors.lightAccent}
 							tappable
-							tracksViewChanges
 						/>
 					);
 				})}

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-type StorageKeys = "savedMarkers";
+type StorageKeys = "savedMarkers" | "notificationsToken";
 
 export const saveDataLocally = async (key: StorageKeys, data: unknown) => {
 	try {

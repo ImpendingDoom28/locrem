@@ -9,17 +9,24 @@ import {
 } from "react-native";
 
 // Theme
-import { theme } from "../../../core/theme/theme";
+import { theme } from "../../../core";
 
-type PageViewProps = Record<string, unknown>
+type PageViewProps = {
+	dark?: boolean
+}
 
-const PageView: React.FC<PageViewProps> = (
+export const PageView: React.FC<PageViewProps> = (
 	{
-		children
+		children,
+		dark
 	}) => {
+
 	return (
 		<SafeAreaView
-			style={styles.pageView}
+			style={[
+				styles.pageView,
+				dark && styles.dark
+			]}
 		>
 			{children}
 		</SafeAreaView>
@@ -31,7 +38,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: theme.colors.backgroundColor,
 		paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+	},
+	dark: {
+		backgroundColor: theme.colors.darkBackgroundColor
 	}
 });
-
-export default PageView;

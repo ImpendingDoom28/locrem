@@ -10,6 +10,8 @@ type MarkerFormModalProps = {
   markerCoordinate: LatLng | undefined,
   setMarkers: React.Dispatch<React.SetStateAction<MarkerProps[]>>, 
   setModalVisible: (value: boolean) => void,
+	defaultMarkerTitle?: string,
+	defaultMarkerNotes?: string,
 }
 
 export const MarkerFormModal: React.FC<MarkerFormModalProps> = (
@@ -17,11 +19,13 @@ export const MarkerFormModal: React.FC<MarkerFormModalProps> = (
 		modalVisible,
 		setModalVisible,
 		markerCoordinate,
+		defaultMarkerTitle = "",
+		defaultMarkerNotes = "",
 		setMarkers,
 	}) => {
 
-	const [markerTitle, setMarkerTitle] = useState<string>("");
-	const [markerNotes, setMarkerNotes] = useState<string>("");
+	const [markerTitle, setMarkerTitle] = useState<string>(defaultMarkerTitle);
+	const [markerNotes, setMarkerNotes] = useState<string>(defaultMarkerNotes);
 
 	const resetModal = () => {
 		setMarkerTitle("");

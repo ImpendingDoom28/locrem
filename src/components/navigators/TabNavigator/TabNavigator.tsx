@@ -47,7 +47,7 @@ export const TabNavigator = () => {
 			initialRouteName={routes.addLocation}
 		>
 			<Screen 
-				name={routes.locations} 
+				name={routes.locations}
 				options={{
 					...defaultScreenOptions,
 					tabBarIcon: (options) => <ButtonIcon 
